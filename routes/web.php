@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DokterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => 'check_account:admin'], function () {
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    });
+
+    Route::group(['middleware' => 'check_account:dokter'], function () {
+        Route::get('/dokter', [DokterController::class, 'index'])->name('dokter');
+    });
 });
