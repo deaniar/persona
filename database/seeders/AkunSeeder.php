@@ -35,7 +35,7 @@ class AkunSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ],
             [
-                'name' => 'arjutama narwan',
+                'name' => 'narwan',
                 'email' => 'arjutamanarwan@mail.com',
                 'telp' => '0812-3456-4444',
                 'level_role' => 'dokter',

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Redis;
 
 class AuthController extends Controller
 {
@@ -34,6 +32,11 @@ class AuthController extends Controller
         $credensil = $request->only('email', 'password');
         if (Auth::attempt($credensil)) {
             $user = Auth::user();
+
+            session([
+                'user_id' => $user->id
+            ]);
+
             if ($user->level_role = 'admin') {
                 return redirect()->intended('admin');
             } else if ($user->level_role = 'dokter') {

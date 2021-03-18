@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'telp',
         'umur',
+        'ttl',
         'alamat',
         'gender',
         'image_profile',

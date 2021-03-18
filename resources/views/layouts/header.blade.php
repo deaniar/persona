@@ -1,7 +1,7 @@
  <div class="header">
      <div class="header-left">
          <a href="index-2.html" class="logo">
-             <img src="assets/img/logo-persona.svg" width="35" height="35" alt=""> <span>Persona</span>
+             <img src="{{ asset('assets/img/logo-persona.svg') }}" width="35" height="35" alt=""> <span>Persona</span>
          </a>
      </div>
      <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -100,7 +100,8 @@
          <li class="nav-item dropdown has-arrow">
              <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                  <span class="user-img">
-                     <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                     <img class="rounded-circle" src="{{ asset('') }}{{ $user['image_profile'] != null ? 'uploads/images/user/' . $user['image_profile'] : 'uploads/images/user/user.jpg' }}
+                     " width="24" alt="{{ $user['name'] }}">
                      <span class="status online"></span>
                  </span>
                  <span>{{ $user['name'] }}</span>
