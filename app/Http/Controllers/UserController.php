@@ -21,6 +21,7 @@ class UserController extends Controller
         $user = Auth::user();
         $data = [
             'title' => 'Dashboard',
+            'sidebar' => 'Dashboard',
             'user' => $user
         ];
         return view('dokter.dashboard', $data);
@@ -30,6 +31,7 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Profile',
+            'sidebar' => 'Profile',
             'user' => $this->userModel->where(['id' => session('user_id')])->first()
         ];
         return view('profile', $data);
@@ -39,6 +41,7 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Edit Profile',
+            'sidebar' => 'Profile',
             'user' => $this->userModel->where(['id' => session('user_id')])->first()
         ];
         return view('edit-profile', $data);

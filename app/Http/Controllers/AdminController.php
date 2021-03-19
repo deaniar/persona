@@ -13,6 +13,7 @@ class AdminController extends Controller
         $user = Auth::user();
         $data = [
             'title' => 'Dashboard',
+            'sidebar' => 'Dashboard',
             'user' => $user
         ];
         return view('admin.dashboard', $data);

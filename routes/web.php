@@ -34,6 +34,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => 'check_account:admin'], function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/doctors', [DokterController::class, 'index'])->name('doctors');
+        Route::get('/doctors/add', [DokterController::class, 'add'])->name('doctors.add');
+        Route::post('/doctors/create', [DokterController::class, 'create'])->name('doctors.create');
+        Route::get('/doctors/{id}', [DokterController::class, 'show'])->name('doctors.id');
+        Route::get('/doctors/{id}/edit', [DokterController::class, 'edit'])->name('doctors.edit');
     });
 
     Route::group(['middleware' => 'check_account:dokter'], function () {
