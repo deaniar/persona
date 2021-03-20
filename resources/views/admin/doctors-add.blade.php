@@ -3,6 +3,8 @@
      <div class="content">
          <div class="row">
              <div class="col-lg-8 offset-lg-2">
+                 <a href="{{ route('doctors') }}"><i class="fa fa-angle-left"></i> Back</a>
+                 <hr>
                  <h4 class="page-title">Add Doctor</h4>
              </div>
          </div>
@@ -34,7 +36,7 @@
                          </div>
                          <div class="col-sm-6">
                              <div class="form-group">
-                                 <label>Password</label>
+                                 <label>Password <span class="text-danger">*</span></label>
                                  <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
                                      type="password" name="password">
                                  @if ($errors->has('password'))
@@ -44,7 +46,7 @@
                          </div>
                          <div class="col-sm-6">
                              <div class="form-group">
-                                 <label>Confirm Password</label>
+                                 <label>Confirm Password <span class="text-danger">*</span></label>
                                  <input class="form-control {{ $errors->has('password_match') ? 'is-invalid' : '' }}"
                                      type="password" name="password_match">
                                  @if ($errors->has('password_match'))
@@ -91,7 +93,7 @@
                          </div>
                          <div class="col-sm-6">
                              <div class="form-group">
-                                 <label>Phone </label>
+                                 <label>Phone <span class="text-danger">*</span></label>
                                  <input class="form-control {{ $errors->has('telp') ? 'is-invalid' : '' }}" type="text"
                                      name="telp" value="{{ old('telp') }}">
                                  @if ($errors->has('telp'))

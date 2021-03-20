@@ -36,24 +36,29 @@
                                     <div class="col-md-7">
                                         <ul class="personal-info">
                                             <li>
-                                                <span class="title">Phone:</span>
-                                                <span class="text"><a href="#">770-889-6484</a></span>
+                                                <span class="title">Telphone:</span>
+                                                <span class="text"><a href="#">{{ $dokter['telp'] }}</a></span>
                                             </li>
                                             <li>
                                                 <span class="title">Email:</span>
-                                                <span class="text"><a href="#">cristinagroves@example.com</a></span>
+                                                <span class="text"><a href="#">{{ $dokter['email'] }}</a></span>
                                             </li>
                                             <li>
-                                                <span class="title">Birthday:</span>
-                                                <span class="text">3rd March</span>
+                                                <span class="title">Usia:</span>
+                                                <span class="text">{{ !empty($dokter['umur']) ? $dokter['umur'] : '-' }}
+                                                    Tahun
+                                                </span>
                                             </li>
                                             <li>
-                                                <span class="title">Address:</span>
-                                                <span class="text">714 Burwell Heights Road, Bridge City, TX, 77611</span>
+                                                <span class="title">Alamat:</span>
+                                                <span
+                                                    class="text">{{ !empty($dokter['alamat']) ? $dokter['alamat'] : '-' }}
+                                                </span>
                                             </li>
                                             <li>
                                                 <span class="title">Gender:</span>
-                                                <span class="text">Female</span>
+                                                <span
+                                                    class="text">{{ !empty($dokter['gender']) ? $dokter['gender'] : '-' }}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -73,8 +78,18 @@
                     <div class="tab-pane show active" id="about-cont">
                         <div class="row">
                             <div class="col-md-12">
+
                                 <div class="card-box">
-                                    <h3 class="card-title">Jadwal Buka</h3>
+                                    <div class="row">
+                                        <div class="col-sm-7 col-6">
+                                            <h3 class="card-title">Jadwal Buka</h3>
+                                        </div>
+                                        <div class="col-sm-5 col-6 text-right m-b-30">
+                                            <a href="" class="btn btn-primary btn-rounded">
+                                                Edit Jadwal
+                                            </a>
+                                        </div>
+                                    </div>
                                     <div class="experience-box">
                                         <ul class="experience-list">
                                             <li>

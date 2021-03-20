@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/doctors/create', [DokterController::class, 'create'])->name('doctors.create');
         Route::get('/doctors/{id}', [DokterController::class, 'show'])->name('doctors.id');
         Route::get('/doctors/{id}/edit', [DokterController::class, 'edit'])->name('doctors.edit');
+        Route::post('/doctors/update', [DokterController::class, 'update'])->name('doctors.update');
+        Route::post('/doctors/update-account', [DokterController::class, 'updateAccount'])->name('doctors.update_account');
+        Route::post('/doctors/delete', [DokterController::class, 'delete'])->name('doctors.delete');
     });
 
     Route::group(['middleware' => 'check_account:dokter'], function () {
