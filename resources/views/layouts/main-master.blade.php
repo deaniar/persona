@@ -19,7 +19,6 @@
   <script src="{{ asset('assets/js/respond.min.js') }}"></script>
  <![endif]-->
 
-
 </head>
 
 <body>
@@ -56,6 +55,14 @@
                 if (theEvent.preventDefault) theEvent.preventDefault();
             }
         }
+
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $('#datetimepicker3').datetimepicker({
+                pickDate: false
+            });
+        });
 
     </script>
     <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>

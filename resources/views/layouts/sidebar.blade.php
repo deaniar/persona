@@ -44,7 +44,8 @@
                           <a href="{{ url('/dokter') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Schedule' ? 'active' : '' }}">
-                          <a href="{{ url('/schedule') }}"><i class="fa fa-user-md"></i> <span>Schedule</span></a>
+                          <a href="{{ route('jadwal', ['id' => $user['id']]) }}"><i class="fa fa-user-md"></i>
+                              <span>Schedule</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Appointments' ? 'active' : '' }}">
                           <a href="{{ url('/appointments') }}"><i class="fa fa-calendar"></i>

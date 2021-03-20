@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\UserController;
 
@@ -31,6 +32,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile/edit');
     Route::post('/user/update', [UserController::class, 'updateProfile'])->name('/user/update');
     Route::post('/user/update-account', [UserController::class, 'updateAccount'])->name('/user/update-account');
+
+    Route::get('/doctors/{id}/jadwal', [JadwalController::class, 'index'])->name('jadwal');
+    Route::post('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
+    Route::get('/doctors/{id_dokter}/jadwal/{id_jadwal}/edit', [JadwalController::class, 'edit'])->name('jadwal.edit');
+    Route::post('/jadwal/update', [JadwalController::class, 'update'])->name('jadwal.update');
+    Route::post('/jadwal/delete', [JadwalController::class, 'delete'])->name('jadwal.delete');
 
     Route::group(['middleware' => 'check_account:admin'], function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');

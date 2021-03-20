@@ -6,6 +6,7 @@ use DateTime;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Booking;
+use App\Models\Jadwal;
 use App\Rules\phoneindo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +108,7 @@ class DokterController extends Controller
             'user' => $user,
             'dokter' => $dokter,
             'total_pasien' => Booking::where(['id_dokter' => $id, 'status_booking' => 'terima'])->count(),
+            'jadwals' => Jadwal::where(['id_dokter' => $id])->get(),
             'skor' => $skor,
         ];
         return view('admin.doctor-show', $data);

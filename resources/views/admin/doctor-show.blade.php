@@ -18,7 +18,7 @@
                         <div class="profile-view">
                             <div class="profile-img-wrap">
                                 <div class="profile-img">
-                                    <a href="#"><img class="avatar"
+                                    <a href=""><img class="avatar"
                                             src="{{ url('uploads/images/user') }}{{ !empty($dokter['image_profile']) ? '/' . $dokter['image_profile'] : '/user.jpg' }}"
                                             alt=""></a>
                                 </div>
@@ -31,6 +31,7 @@
                                             <div class="staff-id">Rating : {{ !empty($skor) ? $skor : '-' }}</div>
                                             <div class="staff-id">Jumlah Pasien :
                                                 {{ !empty($total_pasien) ? $total_pasien : '-' }}</div>
+                                            <p class="text-justify small pr-3 pt-2">{{ $dokter['info'] }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-7">
@@ -85,57 +86,31 @@
                                             <h3 class="card-title">Jadwal Buka</h3>
                                         </div>
                                         <div class="col-sm-5 col-6 text-right m-b-30">
-                                            <a href="" class="btn btn-primary btn-rounded">
+                                            <a href="{{ route('jadwal', ['id' => $dokter['id']]) }}"
+                                                class="btn btn-primary btn-rounded">
                                                 Edit Jadwal
                                             </a>
                                         </div>
                                     </div>
                                     <div class="experience-box">
                                         <ul class="experience-list">
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Senin</a>
-                                                        <div>08:00 - 17:00</div>
+                                            @foreach ($jadwals as $jadwal)
+                                                <li>
+                                                    <div class="experience-user">
+                                                        <div class="before-circle"></div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Selasa</a>
-                                                        <div>08:00 - 17:00</div>
+                                                    <div class="experience-content">
+                                                        <div class="timeline-content">
+                                                            <a class="name text-capitalize">{{ $jadwal['hari'] }}</a>
+                                                            <div>
+                                                                {{ date_format(date_create($jadwal['jam_buka']), 'H:i') }}
+                                                                -
+                                                                {{ date_format(date_create($jadwal['jam_tutup']), 'H:i') }}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Rabu</a>
-                                                        <div>08:00 - 17:00</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Kamis</a>
-                                                        <div>08:00 - 17:00</div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
