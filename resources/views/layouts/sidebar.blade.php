@@ -5,13 +5,13 @@
                   @if ($user['level_role'] == 'admin')
                       <li class="menu-title">Main Menu</li>
                       <li class="{{ $sidebar == 'Dashboard' ? 'active' : '' }}">
-                          <a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                          <a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Doctors' ? 'active' : '' }}">
-                          <a href="{{ url('/doctors') }}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                          <a href="{{ route('doctors') }}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Patients' ? 'active' : '' }}">
-                          <a href="{{ url('/patients') }}"><i class="fa fa-wheelchair"></i>
+                          <a href="{{ route('patients') }}"><i class="fa fa-wheelchair"></i>
                               <span>Patients</span></a>
                       </li>
                       <li class="submenu {{ $sidebar == 'Blog' ? 'active' : '' }}">

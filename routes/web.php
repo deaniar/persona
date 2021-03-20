@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -49,6 +50,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/doctors/update', [DokterController::class, 'update'])->name('doctors.update');
         Route::post('/doctors/update-account', [DokterController::class, 'updateAccount'])->name('doctors.update_account');
         Route::post('/doctors/delete', [DokterController::class, 'delete'])->name('doctors.delete');
+
+        Route::get('/patients', [PasienController::class, 'index'])->name('patients');
+        Route::get('/patients/add', [PasienController::class, 'add'])->name('patients.add');
+        Route::post('/patients/create', [PasienController::class, 'create'])->name('patients.create');
+        Route::get('/patients/{id}/edit', [PasienController::class, 'edit'])->name('patients.edit');
+        Route::post('/patients/update', [PasienController::class, 'update'])->name('patients.update');
+        Route::post('/patients/update-account', [PasienController::class, 'updateAccount'])->name('patients.update_account');
+        Route::post('/patients/delete', [PasienController::class, 'delete'])->name('patients.delete');
     });
 
     Route::group(['middleware' => 'check_account:dokter'], function () {
