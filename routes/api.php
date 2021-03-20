@@ -4,6 +4,7 @@ use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\DokterController;
+use App\Http\Controllers\API\JadwalController;
 use App\Http\Controllers\API\PasienController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/dokter/edit', [DokterController::class, 'update']);
     Route::delete('/dokter/delete', [DokterController::class, 'delete']);
     Route::post('/dokter/review', [DokterController::class, 'review']);
+
+    Route::get('/jadwal/{id}', [JadwalController::class, 'show']);
+    Route::get('/dokter/{id}/jadwal', [JadwalController::class, 'jadwalByDokter']);
 
     Route::get('/booking', [BookingController::class, 'index']);
     Route::post('/booking', [BookingController::class, 'create']);
