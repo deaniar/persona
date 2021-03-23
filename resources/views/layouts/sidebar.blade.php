@@ -51,9 +51,9 @@
                           <a href="{{ url('/appointments') }}"><i class="fa fa-calendar"></i>
                               <span>Appointments</span></a>
                       </li>
-                      <li class="{{ $sidebar == 'MyPatients' ? 'active' : '' }}">
-                          <a href="{{ url('/mypatients') }}"><i class="fa fa-wheelchair"></i> <span>My
-                                  Patients</span></a>
+                      <li class="{{ $sidebar == 'Riwayat' ? 'active' : '' }}">
+                          <a href="{{ route('riwayat') }}"><i class="fa fa-history"></i>
+                              <span>Riwayat</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Activities' ? 'active' : '' }}">
                           <a href="{{ url('/activities') }}"><i class="fa fa-bell-o"></i> <span>Activities</span></a>

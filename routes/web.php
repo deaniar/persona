@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
@@ -62,5 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => 'check_account:dokter'], function () {
         Route::get('/dokter', [UserController::class, 'index'])->name('dokter');
+        Route::get('/appointments', [BookingController::class, 'index'])->name('booking');
+        Route::post('/appointments/update', [BookingController::class, 'update'])->name('booking.update');
+        Route::get('/riwayat', [BookingController::class, 'riwayat'])->name('riwayat');
     });
 });

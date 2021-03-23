@@ -17,6 +17,7 @@ class DokterController extends Controller
     public function __construct()
     {
         $this->userModel = new User();
+        $this->BookingModel = new Booking();
     }
 
     public function index()
@@ -100,16 +101,16 @@ class DokterController extends Controller
 
         $sum_skor = Review::where(['id_dokter' => $id])->sum('skor');
         $count_review = Review::where(['id_dokter' => $id])->count();
-        $skor = ($sum_skor && $count_review) ?  ($sum_skor / $count_review) : null;
 
         $data = [
             'title' => $dokter->name,
             'sidebar' => 'Doctors',
             'user' => $user,
             'dokter' => $dokter,
-            'total_pasien' => Booking::where(['id_dokter' => $id, 'status_booking' => 'terima'])->count(),
+            'total_pasien' => Booking::where(['id_dokter' => $id])->whereNotIn('status_booking', ['konfirmasi'])->count(),
             'jadwals' => Jadwal::where(['id_dokter' => $id])->get(),
-            'skor' => $skor,
+            'skor' => ($sum_skor && $count_review) ?  ($sum_skor / $count_review) : null,
+            'sudah_konfirmasi' => $this->BookingModel->getDataBooking($id, ['terima', 'selesai'])
         ];
         return view('admin.doctor-show', $data);
     }

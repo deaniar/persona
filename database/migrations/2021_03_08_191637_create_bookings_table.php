@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->integer('id_dokter');
             $table->integer('id_pasien');
             $table->datetime('tgl_booking');
-            $table->enum('status_booking', ['konfirmasi', 'terima', 'dibatalkan'])->default('konfirmasi');
+            $table->enum('status_booking', ['konfirmasi', 'terima', 'dibatalkan', 'selesai'])->default('konfirmasi');
             $table->timestamps();
         });
     }
