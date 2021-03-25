@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,4 +38,30 @@ class Artikel extends Model
      * @var array
      */
     protected $casts = [];
+
+    /**
+     * Determine if the user is an administrator.
+     *
+     * @return bool
+     */
+    public function getDataArtikel($id_blog)
+    {
+        return DB::table('artikels')
+            ->join('users', 'artikels.id_admin', '=', 'users.id')
+            ->join('kategories', 'artikels.id_kategori', '=', 'kategories.id')
+            ->where(['artikels.id' => $id_blog])
+            ->select(
+                'artikels.id',
+                'users.name',
+                'users.image_profile',
+                'artikels.judul',
+                'kategories.kategori',
+                'artikels.image',
+                'artikels.isi',
+                'artikels.status',
+                'artikels.created_at',
+                'artikels.updated_at'
+            )->get()
+            ->toArray();
+    }
 }

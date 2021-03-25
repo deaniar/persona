@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
-use App\Models\Kategori;
+use App\Models\Kategorie;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,7 @@ class ArtikelController extends Controller
     public function show($id)
     {
         $data = Artikel::where(['id' => $id])->first();
-        $kategori = Kategori::where(['id' => $data->id_kategori])->first();
+        $kategori = Kategorie::where(['id' => $data->id_kategori])->first();
         $admin = User::where(['id' => $data->id_admin])->first();
 
         return response()->json([

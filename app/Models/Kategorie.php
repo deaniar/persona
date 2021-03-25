@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Kategori extends Model
+class Kategorie extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 

@@ -31,7 +31,7 @@ class AkunSeeder extends Seeder
                 'telp' => '0812-3456-3333',
                 'level_role' => 'pasien',
                 'email_verified_at' => now(),
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt('ferdian123'),
                 'remember_token' => Str::random(10),
             ],
             [
@@ -40,7 +40,7 @@ class AkunSeeder extends Seeder
                 'telp' => '0812-3456-4444',
                 'level_role' => 'dokter',
                 'email_verified_at' => now(),
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt('narwan123'),
                 'remember_token' => Str::random(10),
             ],
         ];

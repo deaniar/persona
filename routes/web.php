@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\DokterController;
-use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/patients/update', [PasienController::class, 'update'])->name('patients.update');
         Route::post('/patients/update-account', [PasienController::class, 'updateAccount'])->name('patients.update_account');
         Route::post('/patients/delete', [PasienController::class, 'delete'])->name('patients.delete');
+
+        Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
+        Route::post('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+        Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+        Route::post('/kategori/update', [KategoriController::class, 'update'])->name('kategori.update');
+        Route::post('/kategori/delete', [KategoriController::class, 'delete'])->name('kategori.delete');
+
+        Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
+        Route::get('/artikel/add', [ArtikelController::class, 'add'])->name('artikel.add');
+        Route::post('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+        Route::get('/artikel/show/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+        Route::get('/artikel/show/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
+        Route::post('/artikel/update', [ArtikelController::class, 'update'])->name('artikel.update');
+        Route::post('/artikel/delete', [ArtikelController::class, 'delete'])->name('artikel.delete');
     });
 
     Route::group(['middleware' => 'check_account:dokter'], function () {

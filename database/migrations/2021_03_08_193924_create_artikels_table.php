@@ -20,6 +20,7 @@ class CreateArtikelsTable extends Migration
             $table->integer('id_kategori');
             $table->string('image');
             $table->text('isi');
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
     }
