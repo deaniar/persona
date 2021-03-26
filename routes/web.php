@@ -88,7 +88,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => 'check_account:dokter'], function () {
-        Route::get('/dokter', [UserController::class, 'index'])->name('dokter');
+        Route::get('/dokter', function () {
+            return redirect()->route('profile');
+        });
+        // Route::get('/dokter', [UserController::class, 'index'])->name('dokter');
         Route::get('/appointments', [BookingController::class, 'show'])->name('booking');
         Route::post('/appointments/update', [BookingController::class, 'update'])->name('booking.update');
         Route::get('/riwayat', [BookingController::class, 'riwayat'])->name('riwayat');

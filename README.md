@@ -27,3 +27,14 @@ run seeders data
 ```console
 $ php artisan db:seed
 ```
+
+## Account
+
+User Admin <br>
+email : admin@mail.com <br>
+password : admin123 <br>
+<br>
+User Doctor<br>
+email : yunias@mail.com <br>
+password : yunias123 <br>
+<br>
