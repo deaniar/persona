@@ -2,6 +2,12 @@
 
 https://documenter.getpostman.com/view/13658570/Tz5qaHcY
 
+## Composer Update
+
+```console
+$ composer update
+```
+
 ## Migrate & Seed
 
 run serve

@@ -44,6 +44,31 @@ class Booking extends Model
      *
      * @return bool
      */
+
+    public function getDataBookingAll()
+    {
+        $booking = Booking::where(['status_booking' => 'terima'])->get();
+
+        foreach ($booking as $b) {
+            $pasien_data = User::where(['id' => $b['id_pasien']])->first();
+            $dokter_data = User::where(['id' => $b['id_dokter']])->first();
+
+            $data[] = [
+                'id_booking' => $b['id'],
+                'name_pasien' => $pasien_data['name'],
+                'alamat_pasien' => $pasien_data['alamat'],
+                'image_profile_pasien' => $pasien_data['image_profile'],
+                'name_dokter' => $dokter_data['name'],
+                'image_profile_dokter' => $dokter_data['image_profile'],
+                'tgl_booking' => $b->tgl_booking,
+                'status_booking' => $b['status_booking'],
+
+            ];
+        }
+        return $data = (!empty($data)) ? $data : null;
+    }
+
+
     public function getDataBooking($id_dokter, $status_booking)
     {
         return DB::table('bookings')

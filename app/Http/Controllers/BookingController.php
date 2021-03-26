@@ -18,6 +18,19 @@ class BookingController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        $data = [
+            'title' => 'Appointments',
+            'sidebar' => 'Appointments',
+            'user' => $user,
+            'appointments' =>  $this->BookingModel->getDataBookingAll()
+        ];
+        return view('admin.booking', $data);
+    }
+
+    public function show()
+    {
+        $user = Auth::user();
         $belum_konfirmasi = $this->BookingModel->getDataBooking($user->id, ['konfirmasi']);
         $sudah_konfirmasi = $this->BookingModel->getDataBooking($user->id, ['terima']);
         $data = [

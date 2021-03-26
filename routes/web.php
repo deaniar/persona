@@ -75,11 +75,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/artikel/show/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
         Route::post('/artikel/update', [ArtikelController::class, 'update'])->name('artikel.update');
         Route::post('/artikel/delete', [ArtikelController::class, 'delete'])->name('artikel.delete');
+
+        Route::get('/admin/appointments', [BookingController::class, 'index'])->name('appointments');
     });
 
     Route::group(['middleware' => 'check_account:dokter'], function () {
         Route::get('/dokter', [UserController::class, 'index'])->name('dokter');
-        Route::get('/appointments', [BookingController::class, 'index'])->name('booking');
+        Route::get('/appointments', [BookingController::class, 'show'])->name('booking');
         Route::post('/appointments/update', [BookingController::class, 'update'])->name('booking.update');
         Route::get('/riwayat', [BookingController::class, 'riwayat'])->name('riwayat');
     });

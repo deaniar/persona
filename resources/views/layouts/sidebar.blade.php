@@ -14,6 +14,10 @@
                           <a href="{{ route('patients') }}"><i class="fa fa-wheelchair"></i>
                               <span>Patients</span></a>
                       </li>
+                      <li class="{{ $sidebar == 'Appointments' ? 'active' : '' }}">
+                          <a href="{{ route('appointments') }}"><i class="fa fa-calendar"></i>
+                              <span>Appointments</span></a>
+                      </li>
                       <li class="submenu ">
                           <a href="#"><i class="fa fa-commenting-o"></i> <span> Blog</span> <span
                                   class="menu-arrow"></span></a>
