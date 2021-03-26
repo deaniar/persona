@@ -23,7 +23,7 @@ use App\Http\Controllers\KategoriController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -44,7 +44,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/jadwal/delete', [JadwalController::class, 'delete'])->name('jadwal.delete');
 
     Route::group(['middleware' => 'check_account:admin'], function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+        Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
+        Route::get('/admin/users/add', [AdminController::class, 'add'])->name('admin.add');
+        Route::post('/admin/users/create', [AdminController::class, 'create'])->name('admin.create');
+        Route::get('/admin/users/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+        Route::post('/admin/users/update', [AdminController::class, 'update'])->name('admin.update');
+        Route::post('/admin/users/update-account', [AdminController::class, 'updateAccount'])->name('admin.update_account');
+        Route::post('/admin/users/delete', [AdminController::class, 'delete'])->name('admin.delete');
+
         Route::get('/doctors', [DokterController::class, 'index'])->name('doctors');
         Route::get('/doctors/add', [DokterController::class, 'add'])->name('doctors.add');
         Route::post('/doctors/create', [DokterController::class, 'create'])->name('doctors.create');
@@ -85,4 +93,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/appointments/update', [BookingController::class, 'update'])->name('booking.update');
         Route::get('/riwayat', [BookingController::class, 'riwayat'])->name('riwayat');
     });
+});
+
+Route::get('{any}', function () {
+    return redirect()->route('login');
 });

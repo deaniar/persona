@@ -32,18 +32,22 @@
                               </li>
                           </ul>
                       </li>
+                      <li class="{{ $sidebar == 'Admin' ? 'active' : '' }}">
+                          <a href="{{ route('admin.users') }}"><i class="fa fa-user"></i> <span>Admin</span></a>
+                      </li>
                   @elseif ($user['level_role'] == 'dokter')
                       <li class="menu-title">Main Menu</li>
-                      <li class="{{ $sidebar == 'Dashboard' ? 'active' : '' }}">
-                          <a href="{{ url('/dokter') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
-                      </li>
-                      <li class="{{ $sidebar == 'Schedule' ? 'active' : '' }}">
-                          <a href="{{ route('jadwal', ['id' => $user['id']]) }}"><i class="fa fa-user-md"></i>
-                              <span>Schedule</span></a>
+                      <li class="{{ $sidebar == 'Profile' ? 'active' : '' }}">
+                          <a href="{{ route('profile') }}"><i class="fa fa-dashboard"></i> <span>My
+                                  Profile</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Appointments' ? 'active' : '' }}">
                           <a href="{{ url('/appointments') }}"><i class="fa fa-calendar"></i>
                               <span>Appointments</span></a>
+                      </li>
+                      <li class="{{ $sidebar == 'Schedule' ? 'active' : '' }}">
+                          <a href="{{ route('jadwal', ['id' => $user['id']]) }}"><i class="fa fa-user-md"></i>
+                              <span>Schedule</span></a>
                       </li>
                       <li class="{{ $sidebar == 'Riwayat' ? 'active' : '' }}">
                           <a href="{{ route('riwayat') }}"><i class="fa fa-history"></i>
