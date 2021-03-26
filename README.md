@@ -1,40 +1,65 @@
-## Dukumentasi API
+## Installation
 
-https://documenter.getpostman.com/view/13658570/Tz5qaHcY
+1. clone github in your dir
 
-## Composer Update
+```console
+$ git clone https://github.com/ferddev21/persona
+```
+
+2. open dir persona
+
+```console
+$ cd persona
+```
+
+3. run update composer
 
 ```console
 $ composer update
 ```
 
-## Migrate & Seed
+4. Change file name `.env.example` to `.env`
 
-run serve
+5. make new database "persona" in your database sql
 
-```console
-$ php artisan serve
-```
-
-run migrate db
+6. run for new keygen
 
 ```console
-$ php migrate
+$ php artisan key:generate
 ```
 
-run seeders data
+7. run migrate for database table
+
+```console
+$ php artisan migrate
+```
+
+8. run seeders for data
 
 ```console
 $ php artisan db:seed
 ```
 
+9. run laravel serve
+
+```console
+$ php artisan serve
+```
+
+10. open url `http://127.0.0.1:8000`
+
+Enjoy
+
 ## Account
 
-User Admin <br>
+**User Admin** <br>
 email : admin@mail.com <br>
 password : admin123 <br>
 <br>
-User Doctor<br>
+
+**User Doctor** <br>
 email : yunias@mail.com <br>
 password : yunias123 <br>
 <br>
+
+\*\* [Documentation API for Mobile ](https://documenter.getpostman.com/view/13658570/Tz5qaHcY)

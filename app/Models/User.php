@@ -31,6 +31,7 @@ class User extends Authenticatable
         'info',
         'status_akun',
         'updated_at',
+        'password',
     ];
 
     /**
@@ -39,7 +40,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
         'remember_token',
         'level_role'
     ];

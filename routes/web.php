@@ -27,8 +27,21 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
+
+
+
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('forgot-password');
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
+Route::get('/reset-password/t={token}&e={email}', [AuthController::class, 'resetPassword'])->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'updatePassword'])->name('password.update');
+
 
 Route::group(['middleware' => ['auth']], function () {
 

@@ -3,7 +3,7 @@
     <div class="account-page">
         <div class="account-center">
             <div class="account-box">
-                <form action="{{ url('login') }}" class="form-signin" method="POST">
+                <form action="{{ route('forgot-password') }}" class="form-signin" method="POST">
                     @csrf
                     <div class="account-logo">
                         <a href="{{ url('/') }}"><img src="{{ asset('assets/img/logo-persona.svg') }}"
@@ -11,18 +11,15 @@
                     </div>
                     @include('layouts.flash-alert')
                     <div class="form-group">
-                        <label>Email</label>
+                        <label>Enter Your Email</label>
                         <input type="text" autofocus="" class="form-control" name="email">
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password">
-                    </div>
-                    <div class="form-group text-right">
-                        <a href="{{ route('forgot-password') }}">Forgot your password?</a>
-                    </div>
+
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary account-btn">Login</button>
+                        <button type="submit" class="btn btn-primary account-btn">Reset Password</button>
+                    </div>
+                    <div class="text-center register-link">
+                        <a href="{{ route('login') }}">Back to Login</a>
                     </div>
                 </form>
             </div>
