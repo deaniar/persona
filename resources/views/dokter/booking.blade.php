@@ -25,7 +25,6 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Tanggal / Jam</th>
-                                            <th>Alamat</th>
                                             <th>Umur</th>
                                             <th>Telp</th>
                                             <th>Email</th>
@@ -43,7 +42,6 @@
                                                 </td>
                                                 <td>{{ date_format(date_create($bk->tgl_booking), 'd M y') }} /
                                                     {{ date_format(date_create($bk->tgl_booking), 'H:i') }}</td>
-                                                <td>{{ $bk->alamat }}</td>
                                                 <td>{{ !empty($bk->umur) ? $bk->umur : '-' }} Tahun</td>
                                                 <td>{{ $bk->telp }}</td>
                                                 <td>{{ $bk->email }}</td>
@@ -83,7 +81,6 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Tanggal / Jam</th>
-                                            <th>Alamat</th>
                                             <th>Umur</th>
                                             <th>Telp</th>
                                             <th>Email</th>
@@ -102,7 +99,6 @@
                                                 </td>
                                                 <td>{{ date_format(date_create($sk->tgl_booking), 'd M y') }} /
                                                     {{ date_format(date_create($sk->tgl_booking), 'H:i') }}</td>
-                                                <td>{{ $sk->alamat }}</td>
                                                 <td>{{ !empty($sk->umur) ? $sk->umur : '-' }} Tahun</td>
                                                 <td>{{ $sk->telp }}</td>
                                                 <td>{{ $sk->email }}</td>

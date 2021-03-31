@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo-persona.svg') }}">
     <title>{{ $title }}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,6 +32,52 @@
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script defer>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#province').on('change', function() {
+                $.ajax({
+                    url: '{{ route('address.city') }}',
+                    method: 'POST',
+                    data: {
+                        id: $(this).val()
+                    },
+                    success: function(response) {
+                        $('#city').empty();
+
+                        $.each(response, function(id, name) {
+                            $('#city').append(new Option(name, id))
+                        })
+                    }
+                })
+            });
+            $("#city").on('change', function() {
+                $.ajax({
+                    url: '{{ route('address.district') }}',
+                    method: 'POST',
+                    data: {
+                        id: $(this).val()
+                    },
+                    success: function(response) {
+                        $('#district').empty();
+
+                        $.each(response, function(id, name) {
+                            $('#district').append(new Option(name, id))
+                        })
+                    }
+                })
+            });
+
+
+        });
+
+    </script>
     <script language="javascript">
         function changeImage() {
             document.getElementById("newavatar").src = document.getElementById("input-file").value;

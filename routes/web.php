@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -50,6 +51,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/user/update', [UserController::class, 'updateProfile'])->name('/user/update');
     Route::post('/user/update-account', [UserController::class, 'updateAccount'])->name('/user/update-account');
 
+    Route::post('/address/city', [AddressController::class, 'city'])->name('address.city');
+    Route::post('/address/district', [AddressController::class, 'district'])->name('address.district');
+
     Route::get('/doctors/{id}/jadwal', [JadwalController::class, 'index'])->name('jadwal');
     Route::post('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
     Route::get('/doctors/{id_dokter}/jadwal/{id_jadwal}/edit', [JadwalController::class, 'edit'])->name('jadwal.edit');
@@ -74,6 +78,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/doctors/update', [DokterController::class, 'update'])->name('doctors.update');
         Route::post('/doctors/update-account', [DokterController::class, 'updateAccount'])->name('doctors.update_account');
         Route::post('/doctors/delete', [DokterController::class, 'delete'])->name('doctors.delete');
+
+
 
         Route::get('/patients', [PasienController::class, 'index'])->name('patients');
         Route::get('/patients/add', [PasienController::class, 'add'])->name('patients.add');

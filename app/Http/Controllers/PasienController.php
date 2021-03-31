@@ -8,6 +8,7 @@ use App\Rules\phoneindo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravolt\Indonesia\Models\Province;
 
 class PasienController extends Controller
 {
@@ -30,6 +31,7 @@ class PasienController extends Controller
             'title' => 'Add Patients',
             'sidebar' => 'Patients',
             'user' => $user,
+            'provinces' => Province::pluck('name', 'id')
         ];
         return view('admin.patients-add', $data);
     }
@@ -62,7 +64,6 @@ class PasienController extends Controller
             if ($birthDate > $today) {
                 $umur = 0;
             }
-            $umur = $today->diff($birthDate)->y;
 
             $user = new User();
             $user->level_role = 'pasien';
@@ -72,6 +73,9 @@ class PasienController extends Controller
             $user->telp = $request->telp;
             $user->umur  = $umur;
             $user->ttl = $ttl;
+            $user->provinces_id = $request->province;
+            $user->cities_id = $request->city;
+            $user->districts_id = $request->district;
             $user->alamat = $request->alamat;
             $user->gender = $request->gender;
             $user->image_profile = $fileName;
@@ -92,6 +96,7 @@ class PasienController extends Controller
             'sidebar' => 'Patients',
             'user' => $user,
             'pasien' => $pasien,
+            'provinces' => Province::pluck('name', 'id')
         ];
         return view('admin.patients-edit', $data);
     }
@@ -129,9 +134,11 @@ class PasienController extends Controller
             if ($user->update([
                 'name' => $request->name,
                 'telp' => $request->telp,
-                'umur' => $request->umur,
                 'umur' => $umur,
                 'ttl' => $ttl,
+                'provinces_id' => $request->province,
+                'cities_id' => $request->city,
+                'districts_id' => $request->district,
                 'alamat' => $request->alamat,
                 'gender' => $request->gender,
                 'image_profile' => $fileName,

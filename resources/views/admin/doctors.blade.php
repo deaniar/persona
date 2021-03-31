@@ -40,8 +40,9 @@
                                  href="{{ route('doctors.id', ['id' => $doctor['id']]) }}">{{ $doctor['name'] }}</a>
                          </h4>
                          <div class="doc-prof">{{ $doctor['level_role'] }}</div>
-                         <div class="user-country">
-                             <i class="fa fa-map-marker"></i> {{ $doctor['alamat'] }}
+                         <div class="user-country ">
+                             <i class="fa fa-map-marker"></i>
+                             {{ !empty(getProv($doctor['provinces_id'], 'name')) ? getProv($doctor['provinces_id'], 'name') : '-' }}
                          </div>
                      </div>
                  </div>

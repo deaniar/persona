@@ -125,7 +125,7 @@
                                          <div class="contact-info">
                                              <span
                                                  class="contact-name text-ellipsis text-capitalize">{{ $d['name'] }}</span>
-                                             <span class="contact-date">{{ $d['alamat'] }}</span>
+                                             <span class="contact-date">{{ getProv($d['provinces_id'], 'name') }}</span>
                                          </div>
                                      </div>
                                  </li>

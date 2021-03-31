@@ -51,7 +51,9 @@
                                          </li>
                                          <li>
                                              <span class="title">Alamat:</span>
-                                             <span class="text">{{ !empty($user['alamat']) ? $user['alamat'] : '-' }}
+                                             <span class="text text-capitalize">
+                                                 {{ getAddress($user['id'], 'name') }},
+                                                 {{ !empty($user['alamat']) ? $user['alamat'] : '-' }}
                                              </span>
                                          </li>
                                          <li>

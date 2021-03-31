@@ -34,7 +34,8 @@
                                              class="rounded-circle m-r-5" alt="{{ $pasien['name'] }}">
                                          {{ $pasien['name'] }}</td>
                                      <td>{{ !empty($pasien['umur']) ? $pasien['umur'] : '-' }} Tahun</td>
-                                     <td>{{ !empty($pasien['alamat']) ? $pasien['alamat'] : '-' }}</td>
+                                     <td>{{ !empty(getProv($pasien['provinces_id'], 'name')) ? getProv($pasien['provinces_id'], 'name') : '-' }}
+                                     </td>
                                      <td>{{ $pasien['telp'] }}</td>
                                      <td>{{ $pasien['email'] }}</td>
                                      <td>

@@ -141,7 +141,42 @@
                                          </select>
                                      </div>
                                  </div>
-                                 <div class="col-md-12">
+                                 <div class="col-md-6">
+                                     <div class="form-group form-focus select-focus">
+                                         <label class="focus-label">Provinsi</label>
+                                         <select class="select form-control floating" name="province" id="province">
+                                             <option value="">== Select Province ==</option>
+                                             @foreach ($provinces as $id => $name)
+                                                 <option value="{{ $id }}"
+                                                     {{ $dokter['provinces_id'] == $id ? 'selected' : '' }}>
+                                                     {{ $name }}</option>
+                                             @endforeach
+                                         </select>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <div class="form-group form-focus select-focus">
+                                         <label class="focus-label">Kabupaten/Kota</label>
+                                         <select class="select form-control floating" name="city" id="city">
+
+                                             <option value="{{ $dokter['cities_id'] }}" selected>
+                                                 {{ getCity($dokter['cities_id'], 'name') }}</option>
+                                             <option value="">== Select City ==</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <div class="form-group form-focus select-focus">
+                                         <label class="focus-label">Kecamatan</label>
+                                         <select class="select form-control floating" name="district" id="district">
+
+                                             <option value="{{ $dokter['districts_id'] }}" selected>
+                                                 {{ getDistrict($dokter['districts_id'], 'name') }}</option>
+                                             <option value="">== Select District ==</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-6">
                                      <div class="form-group form-focus">
                                          <label class="focus-label">Alamat</label>
                                          <input type="text" class="form-control floating" value="{{ $dokter['alamat'] }}"

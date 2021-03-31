@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('umur')->nullable();
             $table->date('ttl')->nullable();
             $table->string('alamat')->nullable();
+            $table->char('provinces_id', 2)->nullable();
+            $table->char('cities_id', 4)->nullable();
+            $table->char('districts_id', 7)->nullable();
             $table->enum('gender', ['perempuan', 'laki-laki'])->nullable();
             $table->string('image_profile')->nullable();
             $table->string('pengalaman')->nullable();

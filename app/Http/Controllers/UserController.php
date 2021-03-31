@@ -8,6 +8,7 @@ use App\Rules\phoneindo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravolt\Indonesia\Models\Province;
 
 class UserController extends Controller
 {
@@ -42,7 +43,8 @@ class UserController extends Controller
         $data = [
             'title' => 'Edit Profile',
             'sidebar' => 'Profile',
-            'user' => $this->userModel->where(['id' => session('user_id')])->first()
+            'user' => $this->userModel->where(['id' => session('user_id')])->first(),
+            'provinces' => Province::pluck('name', 'id')
         ];
         return view('edit-profile', $data);
     }
@@ -83,6 +85,9 @@ class UserController extends Controller
                 'umur' => $request->umur,
                 'umur' => $umur,
                 'ttl' => $ttl,
+                'provinces_id' => $request->province,
+                'cities_id' => $request->city,
+                'districts_id' => $request->district,
                 'alamat' => $request->alamat,
                 'gender' => $request->gender,
                 'image_profile' => $fileName,

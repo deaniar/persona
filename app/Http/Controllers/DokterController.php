@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Models\User;
+use App\Models\Jadwal;
 use App\Models\Review;
 use App\Models\Booking;
-use App\Models\Jadwal;
 use App\Rules\phoneindo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravolt\Indonesia\Models\Province;
 
 class DokterController extends Controller
 {
@@ -39,13 +40,13 @@ class DokterController extends Controller
             'title' => 'Add Doctor',
             'sidebar' => 'Doctors',
             'user' => $user,
+            'provinces' => Province::pluck('name', 'id')
         ];
         return view('admin.doctors-add', $data);
     }
 
     public function create(Request $request)
     {
-
         if ($request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -81,6 +82,9 @@ class DokterController extends Controller
             $user->telp = $request->telp;
             $user->umur  = $umur;
             $user->ttl = $ttl;
+            $user->provinces_id = $request->province;
+            $user->cities_id = $request->city;
+            $user->districts_id = $request->district;
             $user->alamat = $request->alamat;
             $user->gender = $request->gender;
             $user->image_profile = $fileName;
@@ -124,6 +128,7 @@ class DokterController extends Controller
             'sidebar' => 'Doctors',
             'user' => $user,
             'dokter' => $dokter,
+            'provinces' => Province::pluck('name', 'id')
         ];
         return view('admin.doctor-edit', $data);
     }
@@ -164,6 +169,9 @@ class DokterController extends Controller
                 'umur' => $request->umur,
                 'umur' => $umur,
                 'ttl' => $ttl,
+                'provinces_id' => $request->province,
+                'cities_id' => $request->city,
+                'districts_id' => $request->district,
                 'alamat' => $request->alamat,
                 'gender' => $request->gender,
                 'image_profile' => $fileName,

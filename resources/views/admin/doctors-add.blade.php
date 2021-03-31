@@ -76,11 +76,45 @@
                                  </select>
                              </div>
                          </div>
-                         <div class="col-sm-12">
+                         <div class="col-sm-6 col-md-6">
+                             <div class="form-group">
+                                 <label>provinsi</label>
+                                 <select class="form-control select" name="province" id="province">
+                                     <option value="">== Select Province ==</option>
+                                     @foreach ($provinces as $id => $name)
+                                         <option value="{{ $id }}"
+                                             {{ old('provinsi') == $id ? 'selected' : '' }}>{{ $name }}</option>
+                                     @endforeach
+
+                                 </select>
+                             </div>
+                         </div>
+                         <div class="col-sm-6 col-md-6">
+                             <div class="form-group">
+                                 <label>Kabupaten/Kota</label>
+                                 <select class="form-control select" name="city" id="city">
+
+                                     <option value="">== Select City ==</option>
+
+                                 </select>
+                             </div>
+                         </div>
+                         <div class="col-sm-6 col-md-6">
+                             <div class="form-group">
+                                 <label>Kecamatan</label>
+                                 <select class="form-control select" name="district" id="district">
+
+                                     <option value="">== Select District ==</option>
+
+                                 </select>
+                             </div>
+                         </div>
+
+                         <div class="col-sm-6 col-md-6">
                              <div class="row">
                                  <div class="col-sm-12">
                                      <div class="form-group">
-                                         <label>Address</label>
+                                         <label>Address Lengkap</label>
                                          <input type="text"
                                              class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"
                                              name="alamat" value="{{ old('alamat') }}">

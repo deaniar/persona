@@ -40,6 +40,10 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
+```console
+$ php artisan laravolt:indonesia:seed
+```
+
 9. run laravel serve
 
 ```console
