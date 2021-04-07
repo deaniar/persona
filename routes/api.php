@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('/dokter/delete', [DokterController::class, 'delete']);
     Route::post('/dokter/review', [DokterController::class, 'review']);
 
+    Route::get('/dokter/loc/{zone}/{location}', [DokterController::class, 'getByLocation']);
+
     Route::get('/jadwal/{id}', [JadwalController::class, 'show']);
     Route::get('/dokter/{id}/jadwal', [JadwalController::class, 'jadwalByDokter']);
 

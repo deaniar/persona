@@ -64,4 +64,23 @@ class Artikel extends Model
             )->get()
             ->toArray();
     }
+    public function getDataArtikelbyAPI($id_blog)
+    {
+        $data = Artikel::where(['id' => $id_blog])->first();
+        $kategori = Kategorie::where(['id' => $data->id_kategori])->first();
+        $admin = User::where(['id' => $data->id_admin])->first();
+
+        return  [
+            'id' => $data->id,
+            'id_admin' => $data->id_admin,
+            'uploader' => $admin->name,
+            'judul' => $data->judul,
+            'kategori' => $kategori->kategori,
+            'image' => url('uploads/images/artikel') . '/' . $data->image,
+            'isi' => $data->isi,
+            'status' => $data->status,
+            'created_at' => $data->created_at,
+            'updated_at' => $data->updated_at
+        ];
+    }
 }

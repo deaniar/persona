@@ -23,7 +23,25 @@ class AuthController extends Controller
         $token = $user->createToken('token-name')->plainTextToken;
         return response()->json([
             'messege' => 'success',
-            'user' => $user,
+            'user' => [
+                "id" => $user['id'],
+                "name" => $user['name'],
+                "email" => $user['email'],
+                "telp" => $user['telp'],
+                "umur" => $user['umur'],
+                "ttl" => $user['ttl'],
+                "alamat" => $user['alamat'],
+                "province" => getProv($user['provinces_id'], 'name'),
+                "city" => getCity($user['cities_id'], 'name'),
+                "district" => getDistrict($user['districts_id'], 'name'),
+                "gender" => $user['gender'],
+                "image_profile" => $user['image_profile'],
+                "email_verified_at" => $user['email_verified_at'],
+                "password" => $user['password'],
+                "status_akun" => $user['status_akun'],
+                "created_at" => $user['created_at'],
+                "updated_at" => $user['updated_at']
+            ],
             'token' => $token
         ], 200);
     }

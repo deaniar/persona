@@ -9,9 +9,16 @@ use App\Rules\phoneindo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\URL;
+use Laravolt\Indonesia\Models\City;
+use Laravolt\Indonesia\Models\District;
+use Laravolt\Indonesia\Models\Province;
 
 class DokterController extends Controller
 {
+    public function __construct()
+    {
+        $this->UserModel = new User();
+    }
     public function index()
     {
         $data = User::where('level_role', 'dokter')->get();
@@ -20,28 +27,7 @@ class DokterController extends Controller
 
     public function show($id)
     {
-        $dokter = User::where(['level_role' => 'dokter', 'id' => $id])->first();
-
-        $sum_skor = Review::where(['id_dokter' => $id])->sum('skor');
-        $count_review = Review::where(['id_dokter' => $id])->count();
-        $skor = ($sum_skor && $count_review) ?  ($sum_skor / $count_review) : null;
-
-        $data = [
-            'id' => $dokter->id,
-            'name' => $dokter->name,
-            'email' => $dokter->email,
-            'telp' => $dokter->telp,
-            'umur' => $dokter->umur,
-            'alamat' => $dokter->alamat,
-            'gender' => $dokter->gender,
-            'image_profile' =>  url('uploads/images/user') . '/' . $dokter->image_profile,
-            'pengalaman' => $dokter->pengalaman,
-            'info' => $dokter->info,
-            'total_pasien' => Booking::where(['id_dokter' => $id, 'status_booking' => 'terima'])->count(),
-            'skor' => $skor,
-            'created_at' => $dokter->created_at,
-            'updated_at' => $dokter->updated_at
-        ];
+        $data = $this->UserModel->getUser($id, 'dokter');
         return response()->json($data, 200);
     }
 
@@ -163,6 +149,45 @@ class DokterController extends Controller
         } else {
             $data = Review::where('id_dokter', $id)->get();
             return response()->json($data, 200);
+        }
+    }
+
+    public function getByLocation($zone, $location)
+    {
+        $location = strtoupper(str_replace("+", " ", $location));
+
+        if ($zone == 'province') {
+            $getZone = Province::where('name', 'like', '%' . $location . '%')->first();
+            $field = 'provinces_id';
+        } elseif ($zone == 'city') {
+            $getZone = City::where('name', 'like', '%' . $location . '%')->first();
+            $field = 'cities_id';
+        } elseif ($zone == 'district') {
+            $getZone = District::where('name', 'like', '%' . $location . '%')->first();
+            $field = 'districts_id';
+        } else {
+            return response()->json([
+                'message' => 'Not Found',
+            ], 401);
+        }
+
+
+        if (empty($getZone)) {
+            return response()->json([
+                'message' => $zone . ' ' . $location . ' not found',
+            ], 401);
+        } else {
+            $getDoktors = User::where([$field => $getZone->id, 'level_role' => 'dokter'])->get()->toArray();
+
+            foreach ($getDoktors as $doctor) {
+                $data[] = $this->UserModel->getUser($doctor['id'], 'dokter');;
+            };
+
+            if (empty($data)) {
+                return response()->json([], 401);
+            } else {
+                return response()->json($data, 200);
+            }
         }
     }
 }

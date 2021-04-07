@@ -10,27 +10,24 @@ use Illuminate\Http\Request;
 
 class ArtikelController extends Controller
 {
+    public function __construct()
+    {
+        $this->ArtikelModel = new Artikel();
+    }
+
     public function index()
     {
         $data = Artikel::get();
-        return response()->json($data, 200);
+        foreach ($data as $d) {
+            $datas[] = $this->ArtikelModel->getDataArtikelbyAPI($d->id);
+        }
+        return response()->json($datas, 200);
     }
     public function show($id)
     {
-        $data = Artikel::where(['id' => $id])->first();
-        $kategori = Kategorie::where(['id' => $data->id_kategori])->first();
-        $admin = User::where(['id' => $data->id_admin])->first();
 
-        return response()->json([
-            'id' => $data->id,
-            'id_admin' => $data->id_admin,
-            'uploader' => $admin->name,
-            'judul' => $data->judul,
-            'kategori' => $kategori->kategori,
-            'image' => 'uploads/images/artikel/' . $data->image,
-            'isi' => $data->isi,
-            'created_at' => $data->created_at
-        ], 200);
+
+        return response()->json($this->ArtikelModel->getDataArtikelbyAPI($id), 200);
     }
 
     public function create(Request $request)
