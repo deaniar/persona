@@ -21,7 +21,10 @@ class DokterController extends Controller
     }
     public function index()
     {
-        $data = User::where('level_role', 'dokter')->get();
+        $Users = User::where('level_role', 'dokter')->get();
+        foreach ($Users as $d) {
+            $data[] = $this->UserModel->getUser($d['id'], 'dokter');
+        }
         return response()->json($data, 200);
     }
 

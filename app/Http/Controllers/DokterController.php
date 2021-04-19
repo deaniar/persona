@@ -52,6 +52,9 @@ class DokterController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required| min:6',
             'password_match' => 'required| same:password',
+            'province' => 'required',
+            'city' => 'required',
+            'district' => 'required',
             'telp' => ['required', new phoneindo],
         ])) {
 

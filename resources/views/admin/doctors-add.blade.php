@@ -79,7 +79,8 @@
                          <div class="col-sm-6 col-md-6">
                              <div class="form-group">
                                  <label>provinsi</label>
-                                 <select class="form-control select" name="province" id="province">
+                                 <select class="form-control select {{ $errors->has('province') ? 'is-invalid' : '' }}"
+                                     name="province" id="province">
                                      <option value="">== Select Province ==</option>
                                      @foreach ($provinces as $id => $name)
                                          <option value="{{ $id }}"
@@ -87,26 +88,37 @@
                                      @endforeach
 
                                  </select>
+                                 @if ($errors->has('province'))
+                                     <span class="text-danger">{{ $errors->first('province') }}</span>
+                                 @endif
                              </div>
                          </div>
                          <div class="col-sm-6 col-md-6">
                              <div class="form-group">
                                  <label>Kabupaten/Kota</label>
-                                 <select class="form-control select" name="city" id="city">
+                                 <select class="form-control select {{ $errors->has('city') ? 'is-invalid' : '' }}"
+                                     name="city" id="city">
 
                                      <option value="">== Select City ==</option>
 
                                  </select>
+                                 @if ($errors->has('city'))
+                                     <span class="text-danger">{{ $errors->first('city') }}</span>
+                                 @endif
                              </div>
                          </div>
                          <div class="col-sm-6 col-md-6">
                              <div class="form-group">
                                  <label>Kecamatan</label>
-                                 <select class="form-control select" name="district" id="district">
+                                 <select class="form-control select {{ $errors->has('district') ? 'is-invalid' : '' }}"
+                                     name="district" id="district">
 
                                      <option value="">== Select District ==</option>
 
                                  </select>
+                                 @if ($errors->has('district'))
+                                     <span class="text-danger">{{ $errors->first('district') }}</span>
+                                 @endif
                              </div>
                          </div>
 
