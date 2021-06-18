@@ -66,4 +66,3 @@ email : yunias@mail.com <br>
 password : yunias123 <br>
 <br>
 
-\*\* [Documentation API for Mobile ](https://documenter.getpostman.com/view/13658570/Tz5qaHcY)

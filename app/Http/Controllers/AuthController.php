@@ -16,26 +16,31 @@ class AuthController extends Controller
 {
     public function index()
     {
+        // check user sudah login
         if (Auth::check()) {
             $user = Auth::user();
 
+            // jika user login == admin redirect ke halaman dashboard admin
+            // jika user login == dokter redirect ke halaman dashobard dokter
             if ($user->level_role == 'admin') {
                 return redirect('admin');
             } else {
                 return redirect('dokter');
             }
         }
+        //jika belum login tampilkan halaman login
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-
+        //check validasi login
         request()->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
+        //check credensil user login set to auth
         $credensil = $request->only('email', 'password');
         if (Auth::attempt($credensil)) {
             $user = Auth::user();
@@ -57,6 +62,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        //Remove all of the items from the session
         $request->session()->flush();
         Auth::logout();
         return redirect('login');
